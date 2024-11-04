@@ -1,0 +1,23 @@
+{% extends "base_template.html" %}
+{% block titulo %}
+    Cursos
+{% endblock %}
+
+{% block contenido %}
+
+<form action="/agregar_cita" method="POST">
+    {{ formulario.hidden_tag() }}
+    <div class="col text-center">
+        <h3>Añadir Cita</h3>
+        <br>
+        {{ formulario.desc() }}
+        {{ formulario.fecha(id="fecha", min=fecha_minima) }}
+        {{ formulario.status() }}
+        {{ formulario.submit() }}
+    </div>
+
+</form>
+<br>
+<a href="/home"><strong>Inicio</strong></a>
+
+{% endblock %}

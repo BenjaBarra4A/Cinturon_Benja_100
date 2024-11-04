@@ -1,0 +1,25 @@
+{% extends "base_template.html" %}
+{% block titulo %}
+    Cursos
+{% endblock %}
+
+
+{% block contenido %}
+</script>
+<form action="{{ url_for('editar_cita', id=cita.id) }}" method="POST">
+    {{ formulario.hidden_tag() }}
+    <div class="col text-center">
+        <h3>EDITAR CITA</h3>
+        <br>
+        {{ formulario.desc() }}
+        {{ formulario.fecha(id="fecha", min=fecha_minima) }}
+        {{ formulario.status() }}
+        {{ formulario.submit( value="Editar Cita") }}
+    </div>
+
+</form>
+<br>
+<a href="/home"><strong>Inicio</strong></a>
+
+
+{% endblock %}

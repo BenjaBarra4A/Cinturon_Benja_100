@@ -1,0 +1,8 @@
+.scroll{
+    height: 5vh;
+    overflow: auto;
+}
+
+table{
+    height: 20px;
+}

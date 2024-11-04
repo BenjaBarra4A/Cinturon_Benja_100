@@ -1,0 +1,61 @@
+{% extends "base_template.html" %}
+{% block titulo %}
+    Cursos
+{% endblock %}
+
+{% block contenido %}
+    <div class="container">
+        <br>
+        <div class="row">
+            
+            <table class="table table-striped">
+                <h3 class="text-center">Aquí están todas sus citas</h3>
+                <br>
+                <thead>
+                    <tr>
+                        <th>TAREA / CITA</th>
+                        <th>FECHA</th>
+                        <th>ESTATUS</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody class="scroll">
+                    {% for cita in citas %}
+                    <tr>
+                        <td>{{ cita.nombre }}</td>
+                        <td>{{ cita.fecha.strftime('%d/%m/%Y') }}</td>
+                        <td>{{ cita.status }}</td>
+                        <td>
+                            {% if cita.status != "Hecha" %}
+                                <a href="{{ url_for('editar_cita', id=cita.id) }}" class="btn btn-warning">Editar</a>
+                                <a href="{{ url_for('eliminar_cita', id=cita.id) }}" class="btn btn-danger">Eliminar</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                
+            <a href="{{ url_for('agregar_cita') }}"><strong>Agregar Cita</strong></a>
+
+            <table class="table table-striped">
+                <h3 class="text-center">Citas expiradas</h3>
+                <br>
+                <thead>
+                    <tr>
+                        <th>TAREA / CITA</th>
+                        <th>FECHA</th>
+                    </tr>
+                </thead>
+                <tbody class="scroll">
+                    {% for cita in citas_pasadas %}
+                    <tr>
+                        <td>{{ cita.nombre }}</td>
+                        <td>{{ cita.fecha.strftime('%d/%m/%Y') }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>    
+    </div>
+{% endblock %}
